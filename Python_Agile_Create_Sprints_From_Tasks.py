@@ -23,6 +23,7 @@ pd.set_option("max_colwidth", 10)
 import numpy as np
 import time
 import datetime
+import os
 
 ### variable 'haltLoops' is used to control if pausing on each loop (either "YES" or "NO")
 haltLoop = "NO"
@@ -42,8 +43,8 @@ yearlySalary = 150000
 ############### PARAMETERS FOR METRICS (YOU CAN CHANGE THESE) ###################
 
 
-
-taskFile = r"\\hotce15\p\l48esri\per\working\c_habrock\AICOE\AGILE_PROJECT_RANKING\AGILE_PROJECT_RANKING.xlsx"
+# input Excel file (if other, modify pd.read method)
+taskFile = r"MY_INPUT_FILE_PATH_GOES_HERE"
 
 # originally written using 'Sheet1', use 'Sheet5' for larger example, use 'Sheet6' for table seating
 dfOriginal = pd.read_excel(taskFile, sheet_name="Sheet5")
@@ -58,7 +59,7 @@ print()
 ###################### MAP COLUMNS FOR YOUR DATA TO VARIABLE NAMES BELOW #############
 ### provide csv name for saving results (this gets appened to a partial file path and partial name)
 ### ex: (''' r"agile_sprints"    OR     r"wells_per_tank"     OR    r"wedding_guests_per_table"   OR   r"maximize_number_wells_visit_per_day"''')
-csvName = r"wells_per_tank" 
+csvName = r"wells_per_tank.csv" 
 
 
 ### create variables mapped to column names for easier usage with other tables and files ###
@@ -552,8 +553,9 @@ print()
 
 
 ### WRITING TO CSV ###
-partialPathAndName = r"\\hotce15\p\l48esri\per\working\c_habrock\AICOE\AGILE_PROJECT_RANKING\OUTPUT_RESULTS\GROUP_RESULTS_"
-outFile = partialPathAndName + csvName + r".csv"
+# folder path goes below
+partialPathAndName = r"YOUR_FOLDER_PATH_GOES_HERE"
+outFile = os.path.join(partialPathAndName, csvName)
 #finalDf.to_csv(outFile, index=False)                
 print("DONE WRITING CSV")
 print(f"Written to: {outFile}")
